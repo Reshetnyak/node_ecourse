@@ -3,5 +3,3 @@ export class Product {
         console.log('Product module');
     }
 }
-
-// module.exports = Product;

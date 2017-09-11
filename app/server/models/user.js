@@ -3,5 +3,3 @@ export class User {
         console.log('User module');
     }
 }
-
-// module.exports = User;

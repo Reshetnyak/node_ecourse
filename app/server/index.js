@@ -1,8 +1,7 @@
-// import "babel-register";
-import { User, Product } from './models/index.js';
+import { User, Product } from './models';
+import { config } from './config/config';
 
-// const User = require('./models/user');
-// const Product = require('./models/product');
+console.log('Application name is: ', config.appName);
 
 const Bob = new User();
 const Bread = new Product();
