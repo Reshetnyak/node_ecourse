@@ -4,7 +4,9 @@
   "description": "Node.js course tasks",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "build": "babel ./app/server/ --out-dir dist",
+    "start": "babel ./app/server/ --watch --out-dir dist --source-maps inline",
+    "serve": "npm run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +24,7 @@
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
   "devDependencies": {
     "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0"
