@@ -1,5 +1,5 @@
 import { User, Product } from './models';
-import { config } from './config/config';
+import * as config from './config/config.json';
 
 console.log('Application name is: ', config.appName);
 
