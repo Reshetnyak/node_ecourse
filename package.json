@@ -4,8 +4,8 @@
   "description": "Node.js course tasks",
   "main": "index.js",
   "scripts": {
-    "copy": "copyfiles -u 3 ./app/server/config/config.json ./dist/config/",
-    "clean": "rimraf dist", 
+    "copy": "copyfiles -u 2 ./app/server/config/*.json ./app/server/data/*.csv ./dist/",
+    "clean": "rimraf dist",
     "build": "npm run clean && npm run copy && babel ./app/server/ --out-dir dist",
     "start:dev": "babel-watch ./app/server/index.js",
     "start": "npm run build && node dist/index.js",
@@ -24,13 +24,17 @@
     "url": "https://github.com/Reshetnyak/node_ecourse/issues"
   },
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
+  "dependencies": {
+    "csvtojson": "^1.1.7"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "babel-watch": "^2.0.7",
-    "rimraf": "2.6.2",
-    "copyfiles": "1.2.0"
+    "copyfiles": "1.2.0",
+    "nodemon": "^1.12.1",
+    "rimraf": "2.6.2"
   }
 }
