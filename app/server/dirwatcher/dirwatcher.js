@@ -12,11 +12,9 @@ export class DirWatcher extends EventEmitter {
     }
 
     watch(path = '/', delay = 0) {
-        const watcher = fs.watch(path, (event, filename) => {
-            setTimeout(() => {
-                this.emit( CHANGED, filename );
-            }, delay );
-        });
+        const emitter  = filename => this.emit(CHANGED, filename);
+        const callback = (event, filename) => setTimeout(emitter, delay, filename);
+        const watcher = fs.watch(path, callback);
         this._addWatcher(path, watcher);
     }
 

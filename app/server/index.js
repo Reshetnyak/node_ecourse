@@ -13,21 +13,19 @@ const Bread = new Product();
 const importer = new Importer();
 const pathToData = path.resolve(__dirname, 'data');
 
+const convertToJson = (path, data) => {
+    return new Promise((resolve, reject) => {
+        let _data = [];
+        const onJson = j => _data.push(j);
+        const onDone = error => error ? reject(error) : resolve(_data)
+        csv().fromFile(path)
+            .on('json', onJson)
+            .on('done', onDone);
+    });
+}
+
 importer.import(pathToData)
-    .then((path, data) => {
-        return new Promise((resolve, reject) => {
-            let _data = [];
-            csv().fromFile(path)
-                .on('json', j => _data.push(j))
-                .on('done', error => {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(_data);
-                    }
-                })
-          });
-    })
+    .then( convertToJson )
     .then(result => {
         console.log('mock data json is: ', result);
     })
