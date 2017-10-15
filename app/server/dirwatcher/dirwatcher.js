@@ -1,5 +1,4 @@
 import fs from 'fs';
-import _path from 'path';
 import { EventEmitter } from 'events';
 
 export const CHANGED = Symbol('dirwatcher:changed');

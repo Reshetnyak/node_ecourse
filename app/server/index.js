@@ -1,19 +1,14 @@
 import csv from 'csvtojson';
 import path from 'path';
-import { User, Product } from './models';
 import * as config from './config/config.json';
-import { DirWatcher } from './dirwatcher/dirwatcher';
 import { Importer } from './importer/importer';
 
 console.log('Application name is: ', config.appName);
 
-const Bob = new User();
-const Bread = new Product();
-
 const importer = new Importer();
 const pathToData = path.resolve(__dirname, 'data');
 
-const convertToJson = (path, data) => {
+const convertToJson = (path) => {
     return new Promise((resolve, reject) => {
         let _data = [];
         const onJson = j => _data.push(j);
@@ -32,3 +27,7 @@ importer.import(pathToData)
     .catch(err => {
         console.error('From importing file: ', err);
     });
+
+// [start] Task-2
+
+// [end] Task-2

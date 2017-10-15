@@ -3,9 +3,8 @@ import _path from 'path';
 import { DirWatcher, CHANGED } from '../dirwatcher/dirwatcher';
 
 export class Importer {
-    import(path = '/') {
+    import(path = "/") {
         const dirwatcher = new DirWatcher();
-        let pathToFile = '';
         dirwatcher.watch(path);
         return new Promise( (resolve, reject) => {
             const readFile = filepath => (err, data) => err ? reject(err) : resolve(filepath, data);
