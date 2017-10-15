@@ -28,6 +28,7 @@ importer.import(pathToData)
         console.error('From importing file: ', err);
     });
 
-// [start] Task-2
-
+// [start] Task-2 use a module
+// import run from './utils/streams.js';
+// console.log(run);
 // [end] Task-2

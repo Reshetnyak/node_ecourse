@@ -4,9 +4,10 @@
   "description": "Node.js course tasks",
   "main": "index.js",
   "scripts": {
-    "copy": "copyfiles -u 2 ./app/server/config/*.json ./app/server/data/*.csv ./dist/",
+    "copy": "copyfiles -u 2 ./app/server/config/*.json ./app/server/data/* ./dist/",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run copy && npm run lint && babel ./app/server/ --out-dir dist",
+    "bundle-css": "node dist/utils/streams.js -a bundle-css -f dist/data/",
     "lint": "eslint app",
     "start:dev": "babel-watch ./app/server/index.js",
     "start": "npm run build && node dist/index.js",
@@ -26,10 +27,14 @@
   },
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
   "dependencies": {
-    "csvtojson": "^1.1.7"
+    "csvtojson": "^1.1.7",
+    "request": "^2.83.0",
+    "through2": "^2.0.3",
+    "commander": "^2.11.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
