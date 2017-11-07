@@ -1,7 +1,4 @@
 import fs from 'fs';
-import {
-    Readable
-} from 'stream';
 import path from 'path';
 
 import through from 'through2';
@@ -77,9 +74,8 @@ function _getExternalCss(resolve, reject) {
 }
 
 function _streamFromString(content = '') {
-    let rs = new Readable();
-    rs.push(content);
-    rs.push(null);
+    let rs = through();
+    rs.write(content);
     return rs;
 }
 
@@ -97,7 +93,7 @@ async function _concatFiles(folderPath, extension = '.') {
 
     const files = await new Promise(_readFiles(folderPath));
     return files.reduce((content, file) => {
-        console.log(path.extname(file));
+
         if (path.extname(file).includes(extension)) {
             content += String(fs.readFileSync(`${folderPath}/${file}`))
         }
@@ -107,7 +103,7 @@ async function _concatFiles(folderPath, extension = '.') {
 // [end] css-bundler action
 
 function run(program) {
-    let { action, file } = program;
+    let { action, file, bandleName } = program;
 
     // action is a reserved key in commander
     if (typeof action === 'function') {
@@ -115,7 +111,7 @@ function run(program) {
     }
 
     if (action && file) {
-        handleAction({ action, file });
+        handleAction({ action, file, bandleName });
     } else if (action || file) {
         showEmptyArgument({ action, file });
     } else {
@@ -136,7 +132,7 @@ function showEmptyArgument(params) {
     });
 }
 
-function handleAction({ action, file }) {
+function handleAction({ action, file, bandleName }) {
 
     const actions = {
         io: inputOutput,
@@ -147,7 +143,7 @@ function handleAction({ action, file }) {
     };
 
     if ( actions.hasOwnProperty(action) ) {
-        actions[action](file);
+        actions[action](file, bandleName);
     } else {
         console.log(`Available actions are: ${Object.keys(actions).join(', ')}`);
     }
@@ -166,6 +162,7 @@ program
                            bundle-css     - bundles all css files for given folder
     `)
     .option('-f, --file [path to file]', 'path to file that should be processed')
+    .option('-b, --bandleName [bundle name]', 'bundle name')
     .parse(process.argv);
 
 run(program);
