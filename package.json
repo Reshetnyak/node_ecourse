@@ -29,10 +29,11 @@
   },
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
   "dependencies": {
+    "commander": "^2.11.0",
     "csvtojson": "^1.1.7",
+    "express": "^4.16.2",
     "request": "^2.83.0",
-    "through2": "^2.0.3",
-    "commander": "^2.11.0"
+    "through2": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
