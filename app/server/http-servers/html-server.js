@@ -3,11 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import through from 'through2';
 
-const port = 8080;
+const port = 8081;
 const noIndexTemplate = `<html><head></head><body><h1>Somebody has stolen our template!!!</h1></body></html>\n`;
 
 http.createServer( requestHandler )
-    .listen(port);
+    .listen(port, errorHandler);
 
 function requestHandler(req, res) {
 
@@ -44,4 +44,11 @@ function _streamFromString(content) {
     return rs;
 }
 
-console.log(`Server is listening on port ${port}`);
+function errorHandler(err) {
+    if (err) {
+        console.log(err);
+        return false;
+    }
+    console.log(`Server is listening on port ${port}`);
+}
+

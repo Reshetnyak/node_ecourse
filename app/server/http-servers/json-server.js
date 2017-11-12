@@ -13,11 +13,17 @@ const product = {
 }
 
 http.createServer( requestHandler )
-    .listen(port);
+    .listen(port, errorHandler);
 
 function requestHandler(req, res) {
     res.writeHead(200, {'Content-Type': 'application/json'}); 
     res.end( JSON.stringify(product) );
 }
 
-console.log(`Server is listening on port ${port}`);
+function errorHandler(err) {
+    if (err) {
+        console.log(err);
+        return false;
+    }
+    console.log(`Server is listening on port ${port}`);
+}
