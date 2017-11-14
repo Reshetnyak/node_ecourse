@@ -29,9 +29,11 @@
   },
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "commander": "^2.11.0",
     "csvtojson": "^1.1.7",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
     "request": "^2.83.0",
     "through2": "^2.0.3"
   },
