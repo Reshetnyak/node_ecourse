@@ -4,13 +4,15 @@
   "description": "Node.js course tasks",
   "main": "index.js",
   "scripts": {
-    "copy": "copyfiles -u 2 ./app/server/config/*.json ./app/server/data/* ./dist/",
+    "copy": "copyfiles -u 2 ./app/server/config/*.json ./app/server/data/* ./app/server/http-servers/*.html ./dist/",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run copy && npm run lint && babel ./app/server/ --out-dir dist",
     "bundle-css": "node dist/utils/streams.js -a bundle-css -f dist/data/",
     "lint": "eslint app",
     "start:dev": "babel-watch ./app/server/index.js",
     "start": "npm run build && node dist/index.js",
+    "start-servers": "npm run build-servers && node dist/http-servers/index.js",
+    "start-servers:dev": "babel-watch ./app/server/http-servers/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,10 +29,11 @@
   },
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
   "dependencies": {
+    "commander": "^2.11.0",
     "csvtojson": "^1.1.7",
+    "express": "^4.16.2",
     "request": "^2.83.0",
-    "through2": "^2.0.3",
-    "commander": "^2.11.0"
+    "through2": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
