@@ -12,16 +12,19 @@ http.createServer( requestHandler )
 function requestHandler(req, res) {
 
     const template = getTemplate('index.html');
+    const contentType = {'Content-Type': 'text/html'};
+    const stream = through( (chunk, _, cb) => {
+        cb(null, setMessage(chunk.toString(), 'I wish you all the best!'));
+    });
 
-    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.writeHead(200, contentType);
 
     if (template) {
         _streamFromString(template)
-            .pipe( through( (chunk, enc, cb) => {
-                cb(null, setMessage(chunk.toString(), 'I wish you all the best!'));
-            }))
+            .pipe(stream)
             .pipe(res);
     } else {
+        res.writeHead(500, contentType);
         res.end(noIndexTemplate);
     }
 }

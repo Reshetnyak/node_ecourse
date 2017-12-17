@@ -1,8 +1,12 @@
 import { Router } from 'express';
 
-export const USERS_PATH = '/api/users';
-export const users = new Router();
+export const usersRoute = app => {
+    const USERS_PATH = '/api/users';
+    const users = new Router();
 
-users.get('/', (req, res) => {
-  res.send('All users');
-});
+    users.get('/', (req, res) => {
+        res.send('All users');
+    });
+
+    app.use(USERS_PATH, users);
+}

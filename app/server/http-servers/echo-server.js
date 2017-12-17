@@ -8,9 +8,7 @@ http.createServer((req, res) => {
 .listen(port, errorHandler);
 
 function errorHandler(err) {
-    if (err) {
-        console.log(err);
-        return false;
-    }
-    console.log(`Server is listening on port ${port}`);
+    return err
+        ? console.log(err)
+        : console.log(`Server is listening on port ${port}`);
 }
