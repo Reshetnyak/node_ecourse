@@ -24,6 +24,10 @@ app.use(bodyParser.json());
 parseCookies(app);
 parseQuery(app);
 
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Register routes
 rootRoute(app);
 authRoute(app);
