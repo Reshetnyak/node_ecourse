@@ -18,4 +18,6 @@ export const productsRoute = app => {
         .get('/:id/reviews', (req, res) => {
             res.send(`Reviews for a product with id: ${req.params.id}`);
         });
+    
+    app.use(PRODUCTS_PATH, products);
 }
