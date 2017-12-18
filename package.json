@@ -29,9 +29,16 @@
   },
   "homepage": "https://github.com/Reshetnyak/node_ecourse#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "commander": "^2.11.0",
     "csvtojson": "^1.1.7",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth2": "^0.1.6",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "request": "^2.83.0",
     "through2": "^2.0.3"
   },
